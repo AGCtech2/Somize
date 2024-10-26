@@ -1,0 +1,1 @@
+No Content: https://adymize.com/wp-admin/admin-ajax.php
