@@ -101,6 +101,63 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 			z-index: 100000;
 		}
 </style>
+<style>
+/* Base styles for mobile first */
+body {
+    font-size: 16px;
+}
+
+/* Tablets in portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        font-size: 18px; /* Adjust font size or other styles for tablets */
+    }
+
+    /* Adjust specific elements for tablets */
+    .some-element {
+        width: 80%; /* Example adjustment */
+    }
+}
+
+/* Desktops and landscape tablets */
+@media (min-width: 1025px) {
+    body {
+        font-size: 20px; /* Adjust for larger screens */
+    }
+
+    .some-element {
+        width: 60%; /* Example adjustment for desktop */
+    }
+}
+@media (max-width: 768px) and (min-resolution: 192dpi) { /* Example for high-res mobile devices */
+    .some-element {
+        /* Adjust styles */
+    }
+}
+.header-image {
+    width: 100%; /* Make the header image responsive */
+    max-width: 1920px; /* Optional: limit maximum width */
+}
+
+.container {
+    padding: 0 5%; /* Responsive padding */
+    .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+}
+}
+h1 {
+    font-size: 2.5rem; /* Responsive size */
+}
+
+p {
+    font-size: 1rem; /* Base size */
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+}	
+</style>	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">	
 <link rel="stylesheet" id="elementor-icons-css" href="https://agctech2.github.io/Somize/course.adymize.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.23.0" media="all" />
 <link rel="stylesheet" id="elementor-frontend-css" href="https://agctech2.github.io/Somize/course.adymize.com/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.17.3" media="all" />
