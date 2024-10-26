@@ -3304,6 +3304,35 @@ Business </label>
         }
         document.addEventListener("DOMContentLoaded", RocketElementorAnimation.run);
     </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function() {
+            const texts = $(".elementor-headline-dynamic-text");
+            let currentIndex = 0;
+
+            function rotateText() {
+                // Hide all texts
+                texts.each(function(index) {
+                    $(this).removeClass("elementor-headline-text-active"); // Remove active class
+                    $(this).css("opacity", "0"); // Hide text
+                });
+
+                // Update current index
+                currentIndex = (currentIndex + 1) % texts.length; // Cycle through texts
+
+                // Show the current text
+                $(texts[currentIndex]).addClass("elementor-headline-text-active"); // Add active class
+                $(texts[currentIndex]).css("opacity", "1"); // Show text
+
+                // Set a delay before the next text appears
+                setTimeout(rotateText, 2500); // Change time as needed
+            }
+
+            // Start the rotation
+            rotateText();
+        });
+    </script>	
 </body>
 
 </html>
