@@ -159,36 +159,41 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div class="elementor-element elementor-element-1faea05d elementor-align-right elementor-widget elementor-widget-button" data-id="1faea05d" data-element_type="widget" data-widget_type="button.default">
 <div class="elementor-widget-container">
 <style>	
-/* Target tablets in portrait mode specifically */
-@media (max-width: 800px) and (orientation: portrait) {
+/* Specific styles for large tablets (like Galaxy Tab A9+) in portrait mode */
+@media (min-width: 700px) and (max-width: 850px) and (orientation: portrait) {
     .container-class {
-        padding: 10px; /* Adjust padding */
-        font-size: 1em; /* Ensure font size is appropriate */
+        padding: 10px; /* Adjust to fit better in portrait */
+        font-size: 1rem; /* Responsive font size */
         display: flex;
         flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center-align content */
     }
     .elementor-button {
-        width: 100%; /* Full width for buttons */
+        width: 100%; /* Full-width buttons in portrait */
         padding: 0.8rem 1.5rem; /* Adjust padding */
     }
-}
-
-/* For tablets in landscape mode */
-@media (min-width: 801px) and (max-width: 1024px) {
-    .container-class {
-        padding: 20px; /* Adjust padding */
+    /* Adjust specific layout elements to avoid desktop layout in portrait */
+    .header, .content, .footer {
+        width: 100%;
     }
 }
 
-/* General mobile styles */
-@media (max-width: 480px) {
+/* General tablet responsiveness in landscape */
+@media (min-width: 851px) and (max-width: 1024px) {
     .container-class {
-        flex-direction: column; /* Stack items */
+        padding: 20px; /* Adjust padding for landscape */
+    }
+}
+
+/* Standard mobile layout */
+@media (max-width: 700px) {
+    .container-class {
         padding: 10px;
+        font-size: 0.9rem;
+        flex-direction: column;
     }
     .elementor-button {
-        width: 100%; /* Make buttons full-width */
-        padding: 0.8rem 1.5rem; /* Adjust padding */
+        width: 100%;
     }
 }
 </style>	
