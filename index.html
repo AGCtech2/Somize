@@ -9,7 +9,29 @@
 <meta name="robots" content="max-image-preview:large" />
 <link rel="alternate" type="application/rss+xml" title="course &raquo; Feed" href="https://somize.com/feed/" />
 <link rel="alternate" type="application/rss+xml" title="course &raquo; Comments Feed" href="https://somize.com/comments/feed/" />
-  <!-- Meta Pixel Code -->
+
+<script>
+    // JavaScript to dynamically adjust viewport for tablets
+    function adjustViewport() {
+        // Check if the device is a tablet (using width and height ratio)
+        let isTablet = (window.innerWidth >= 800 && window.innerWidth <= 1024);
+        let portraitMode = window.innerWidth < window.innerHeight;
+
+        if (isTablet && portraitMode) {
+            // Adjust viewport for portrait mode on tablet
+            document.querySelector("meta[name=viewport]").setAttribute("content", "width=800, initial-scale=1.0");
+        } else {
+            // Default viewport for other devices
+            document.querySelector("meta[name=viewport]").setAttribute("content", "width=device-width, initial-scale=1.0");
+        }
+    }
+
+    // Adjust viewport on load and on resize
+    window.addEventListener("load", adjustViewport);
+    window.addEventListener("resize", adjustViewport);
+</script>	
+	
+	<!-- Meta Pixel Code -->
 
 <script>
 
