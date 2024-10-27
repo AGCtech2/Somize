@@ -158,38 +158,39 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div class="elementor-element elementor-element-7cf59079 e-con-full e-flex e-con e-child" data-id="7cf59079" data-element_type="container" data-settings="{&quot;content_width&quot;:&quot;full&quot;}">
 <div class="elementor-element elementor-element-1faea05d elementor-align-right elementor-widget elementor-widget-button" data-id="1faea05d" data-element_type="widget" data-widget_type="button.default">
 <div class="elementor-widget-container">
-<style>	
-/* Specific styles for large tablets (like Galaxy Tab A9+) in portrait mode */
-@media (min-width: 700px) and (max-width: 850px) and (orientation: portrait) {
-    .container-class {
-        padding: 10px; /* Adjust to fit better in portrait */
-        font-size: 1rem; /* Responsive font size */
+<style>
+/* For Galaxy Tab A9+ in portrait mode */
+@media only screen and (min-device-width: 800px) and (max-device-width: 900px) and (orientation: portrait) {
+    .container-class, .header, .content, .footer {
+        width: 100%;
+        padding: 10px; /* Add comfortable padding */
         display: flex;
         flex-direction: column; /* Stack items vertically */
+        font-size: 1em; /* Adjust font size for readability */
         align-items: center; /* Center-align content */
     }
     .elementor-button {
-        width: 100%; /* Full-width buttons in portrait */
-        padding: 0.8rem 1.5rem; /* Adjust padding */
+        width: 100%; /* Full-width button in portrait */
+        padding: 0.8rem 1.5rem; /* Adjust button padding */
     }
-    /* Adjust specific layout elements to avoid desktop layout in portrait */
-    .header, .content, .footer {
+}
+
+/* Standard tablet portrait mode (general) */
+@media only screen and (max-width: 1024px) and (orientation: portrait) {
+    .container-class, .header, .content, .footer {
         width: 100%;
+        padding: 15px;
+        font-size: 1em;
     }
 }
 
-/* General tablet responsiveness in landscape */
-@media (min-width: 851px) and (max-width: 1024px) {
-    .container-class {
-        padding: 20px; /* Adjust padding for landscape */
-    }
-}
-
-/* Standard mobile layout */
-@media (max-width: 700px) {
-    .container-class {
+/* Mobile mode */
+@media only screen and (max-width: 768px) {
+    .container-class, .header, .content, .footer {
+        width: 100%;
         padding: 10px;
-        font-size: 0.9rem;
+        font-size: 0.9em;
+        display: flex;
         flex-direction: column;
     }
     .elementor-button {
