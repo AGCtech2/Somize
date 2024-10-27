@@ -182,18 +182,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div class="elementor-widget-container">
 <style>
 /* For Galaxy Tab A9+ in portrait mode */
-@media only screen and (min-device-width: 800px) and (max-device-width: 900px) and (orientation: portrait) {
-    .container-class, .header, .content, .footer {
-        width: 100%;
-        padding: 10px; /* Add comfortable padding */
-        display: flex;
-        flex-direction: column; /* Stack items vertically */
-        font-size: 1em; /* Adjust font size for readability */
-        align-items: center; /* Center-align content */
-    }
-    .elementor-button {
-        width: 100%; /* Full-width button in portrait */
-        padding: 0.8rem 1.5rem; /* Adjust button padding */
+/* Specific targeting for Samsung Galaxy Tab A9+ in portrait mode */
+@media only screen and (min-width: 800px) and (max-width: 850px) and (orientation: portrait) {
+    /* Add specific styling for Chrome issues here */
+    body, .container-class, .elementor-button {
+        padding: 10px; /* Adjust as necessary */
+        font-size: 1rem; /* Modify if text sizes appear off */
+        /* Any other styles that specifically need adjustment */
     }
 }
 
