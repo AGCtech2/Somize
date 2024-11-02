@@ -685,45 +685,97 @@ MONEY </span>
 </div>
 <div class="elementor-element elementor-element-49e17041 elementor-widget elementor-widget-shortcode" data-id="49e17041" data-element_type="widget" data-widget_type="shortcode.default">
 <div class="elementor-widget-container">
-<!-- Add this where you want the form to appear -->
-<section id="contact-form">
- 
-    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-            <input type="text" name="name" placeholder="Your Name?" required style="flex: 1; min-width: 200px;">
-            <input type="email" name="email" placeholder="Your Email Address?" required style="flex: 1; min-width: 200px;">
-            <input type="text" name="phone" placeholder="Your Phone Number?" required style="flex: 1; min-width: 200px;">
-            <input type="text" name="budget" placeholder="What's Your Budget?" required style="flex: 1; min-width: 200px;">
-            <input type="text" name="website" placeholder="Your Website?" style="flex: 1; min-width: 200px;">
-        </div>
-        <textarea name="message" rows="4" placeholder="Tell us about your project" required style="width: 100%; margin-top: 1rem;"></textarea>
-        <button type="submit" style="background-color: #7f4acb; color: #fff; padding: 0.8rem 2rem; font-size: 1rem; border: none; cursor: pointer; margin-top: 1rem;">
-            Send Message
-        </button>
-    </form>
-</section>
+<!-- Form Section Starts -->
+<div class="form-section">
+    
+    <p class="form-subtext">We're here to answer any question you may have.</p>
 
+    <!-- Contact Form -->
+    <form id="contactForm" action="YOUR_FORMSPREE_OR_GETFORM_ACTION_URL" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="phone" placeholder="Your Phone Number">
+        <input type="text" name="website" placeholder="Your Website">
+        <input type="text" name="budget" placeholder="What's your budget?">
+        <textarea name="message" placeholder="Tell us about your project"></textarea>
+        <button type="submit">SEND MESSAGE</button>
+    </form>
+
+    <!-- Confirmation Message -->
+    <p id="confirmationMessage" style="display: none; text-align: center; color: #4CAF50; margin-top: 15px;">
+        Thank you for reaching out! We'll get back to you soon.
+    </p>
+</div>
+<!-- Form Section Ends -->
+
+<!-- CSS Styles -->
 <style>
-    /* Basic styling to match your website */
-    #contact-form {
-        text-align: left;
-        max-width: 800px;
+    .form-section {
+        max-width: 600px;
         margin: 0 auto;
-        padding: 2rem;
+        text-align: center;
     }
-    #contact-form h2 {
-        font-size: 2rem;
+
+    .form-subtext {
+        font-size: 1em; /* Adjust to match your site's font size */
+        color: #6c6c6c; /* Use a subtle gray color */
+        margin-top: -10px;
+        margin-bottom: 20px;
     }
-    #contact-form input, #contact-form textarea {
-        font-size: 1rem;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+
+    #contactForm {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
-    #contact-form button:hover {
-        background-color: #6844ab;
+
+    #contactForm input,
+    #contactForm textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    #contactForm button {
+        background-color: #7b47d1; /* Match your site's button color */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    #contactForm button:hover {
+        background-color: #6a3bb5;
     }
 </style>
+
+<!-- JavaScript to Handle Form Submission and Confirmation Message -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from reloading the page
+
+    // Display confirmation message and hide form
+    document.getElementById('confirmationMessage').style.display = 'block';
+    this.style.display = 'none'; // Hide form after submission
+
+    // To actually submit the form to Formspree or Getform
+    fetch(this.action, {
+        method: this.method,
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            this.reset(); // Clear the form if needed
+        }
+    }).catch(error => {
+        console.error('Form submission error:', error);
+    });
+});
+</script>
 </div>
 </div>
 </div>
