@@ -685,7 +685,47 @@ MONEY </span>
 </div>
 <div class="elementor-element elementor-element-49e17041 elementor-widget elementor-widget-shortcode" data-id="49e17041" data-element_type="widget" data-widget_type="shortcode.default">
 <div class="elementor-widget-container">
+<!-- Add this where you want the form to appear -->
+<section id="contact-form">
+    <h2>Ready to Grow Your Business?</h2>
+    <p>We're here to answer any question you may have.</p>
 
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <input type="text" name="name" placeholder="Your Name?" required style="flex: 1; min-width: 200px;">
+            <input type="email" name="email" placeholder="Your Email Address?" required style="flex: 1; min-width: 200px;">
+            <input type="text" name="phone" placeholder="Your Phone Number?" required style="flex: 1; min-width: 200px;">
+            <input type="text" name="budget" placeholder="What's Your Budget?" required style="flex: 1; min-width: 200px;">
+            <input type="text" name="website" placeholder="Your Website?" style="flex: 1; min-width: 200px;">
+        </div>
+        <textarea name="message" rows="4" placeholder="Tell us about your project" required style="width: 100%; margin-top: 1rem;"></textarea>
+        <button type="submit" style="background-color: #7f4acb; color: #fff; padding: 0.8rem 2rem; font-size: 1rem; border: none; cursor: pointer; margin-top: 1rem;">
+            Send Message
+        </button>
+    </form>
+</section>
+
+<style>
+    /* Basic styling to match your website */
+    #contact-form {
+        text-align: left;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    #contact-form h2 {
+        font-size: 2rem;
+    }
+    #contact-form input, #contact-form textarea {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #contact-form button:hover {
+        background-color: #6844ab;
+    }
+</style>
 </div>
 </div>
 </div>
