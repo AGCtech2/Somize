@@ -700,12 +700,15 @@ MONEY </span>
         <!-- Phone Number and Budget in the Same Line -->
         <div class="form-group-inline">
             <div class="inline-item">
-                <select id="countryCode" name="countryCode" class="dropdown-small">
-                    <option value="+1">+1 (US)</option>
-                    <option value="+91">+91 (IN)</option>
-                    <option value="+44">+44 (GB)</option>
-                    <!-- Add more country codes as needed -->
-                </select>
+                <div class="country-select">
+                    <select id="countryCode" name="countryCode" class="dropdown-small" onchange="updateCountryCode()">
+                        <option data-icon="🇺🇸" value="+1">+1 (US)</option>
+                        <option data-icon="🇮🇳" value="+91">+91 (IN)</option>
+                        <option data-icon="🇬🇧" value="+44">+44 (GB)</option>
+                        <!-- Add more country codes as needed -->
+                    </select>
+                    <span id="selectedCountryIcon" class="country-icon"></span>
+                </div>
                 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
             </div>
             
@@ -799,6 +802,16 @@ MONEY </span>
         white-space: nowrap; /* Prevent text wrapping */
     }
 
+    .country-select {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .country-icon {
+        font-size: 1.5em; /* Adjust size of the flag icon */
+    }
+
     .contact-form textarea {
         height: 100px;
     }
@@ -817,7 +830,22 @@ MONEY </span>
     .contact-form button:hover {
         background-color: #6a3bb5;
     }
-</style>	
+</style>
+
+<!-- JavaScript to Update Selected Country Code -->
+<script>
+    function updateCountryCode() {
+        const select = document.getElementById('countryCode');
+        const icon = document.getElementById('selectedCountryIcon');
+        const selectedOption = select.options[select.selectedIndex];
+        icon.textContent = selectedOption.getAttribute('data-icon');
+    }
+
+    // Initialize the icon on page load
+    window.onload = function() {
+        updateCountryCode();
+    }
+</script>
 <!-- JavaScript for Geolocation and Form Submission -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
