@@ -697,22 +697,14 @@ MONEY </span>
             <input type="email" name="email" placeholder="Your Email Address" required>
         </div>
         
-        <!-- Phone and Country Code -->
+        <!-- Phone Number with Country Code -->
         <div class="form-group">
-            <select id="country-code" name="country_code" required>
-                <!-- Placeholder and options to be filled dynamically -->
-                <option value="">Select Country Code</option>
-            </select>
-            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <input type="tel" id="phone" name="phone" placeholder="+Country Code Phone Number" required>
         </div>
 
-        <!-- Budget and Currency -->
+        <!-- Budget with Currency Placeholder -->
         <div class="form-group">
-            <input type="text" name="budget" placeholder="Your Budget" required>
-            <select id="currency" name="currency" required>
-                <!-- Placeholder and options to be filled dynamically -->
-                <option value="">Select Currency</option>
-            </select>
+            <input type="text" id="budget" name="budget" placeholder="Your Budget (Currency)" required>
         </div>
 
         <div class="form-group">
@@ -800,10 +792,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             const countryCode = data.country;
             const currency = getCurrencyByCountryCode(countryCode);
+            const phoneInput = document.getElementById('phone');
+            const budgetInput = document.getElementById('budget');
 
-            // Set country code and currency in the dropdowns if detected
-            document.getElementById('country-code').value = countryCode;
-            document.getElementById('currency').value = currency;
+            // Set default country code in phone placeholder
+            phoneInput.placeholder = `+${getCountryDialCode(countryCode)} Your Phone Number`;
+            
+            // Set default currency in budget placeholder
+            budgetInput.placeholder = `Your Budget (${currency})`;
         })
         .catch(error => console.error('Geolocation error:', error));
 
@@ -818,32 +814,17 @@ document.addEventListener("DOMContentLoaded", function() {
         return currencyMapping[code] || 'USD'; // Default to USD if not found
     }
 
-    // Populate country code and currency dropdowns
-    const countryCodes = {
-        "US": "+1",
-        "IN": "+91",
-        "GB": "+44",
-        "AU": "+61",
-        // Add other countries as needed
-    };
-    const currencies = ["USD", "EUR", "INR"];
-
-    const countryCodeSelect = document.getElementById('country-code');
-    const currencySelect = document.getElementById('currency');
-
-    for (const [code, dialCode] of Object.entries(countryCodes)) {
-        let option = document.createElement("option");
-        option.value = dialCode;
-        option.textContent = `${code} (${dialCode})`;
-        countryCodeSelect.appendChild(option);
+    // Mapping of country codes to dial codes
+    function getCountryDialCode(code) {
+        const dialCodes = {
+            "US": "1",
+            "IN": "91",
+            "GB": "44",
+            "AU": "61",
+            // Add other countries as needed
+        };
+        return dialCodes[code] || ''; // Default to empty if not found
     }
-
-    currencies.forEach(currency => {
-        let option = document.createElement("option");
-        option.value = currency;
-        option.textContent = currency;
-        currencySelect.appendChild(option);
-    });
     
     // Form submission handling
     document.getElementById('contactForm').addEventListener('submit', function(event) {
