@@ -691,7 +691,7 @@ MONEY </span>
     <p class="form-subtext">We're here to answer any question you may have.</p>
 
     <!-- Contact Form -->
-    <form id="contactForm" action="YOUR_FORMSPREE_OR_GETFORM_ACTION_URL" method="POST" class="contact-form">
+    <form id="contactForm" action="https://formspree.io/f/xbljgzpb" method="POST" class="contact-form">
         <div class="form-group">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
@@ -699,24 +699,24 @@ MONEY </span>
         
         <!-- Phone Number with Country Code -->
         <div class="form-group">
-            <select id="countryCode" name="countryCode">
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+            <select id="countryCode" name="countryCode" class="dropdown-small">
                 <option value="+1">+1 (US)</option>
                 <option value="+91">+91 (IN)</option>
                 <option value="+44">+44 (GB)</option>
                 <!-- Add more country codes as needed -->
             </select>
-            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
         </div>
 
         <!-- Budget with Currency -->
         <div class="form-group">
-            <select id="currency" name="currency">
+            <input type="text" id="budget" name="budget" placeholder="Your Budget" required>
+            <select id="currency" name="currency" class="dropdown-small">
                 <option value="USD">USD</option>
                 <option value="INR">INR</option>
                 <option value="EUR">EUR</option>
                 <!-- Add more currencies as needed -->
             </select>
-            <input type="text" id="budget" name="budget" placeholder="Your Budget" required>
         </div>
 
         <div class="form-group">
@@ -760,8 +760,9 @@ MONEY </span>
 
     .form-group {
         display: flex;
+        flex-direction: column;
         width: 100%;
-        gap: 10px;
+        gap: 5px;
         margin-bottom: 15px;
     }
 
@@ -773,6 +774,14 @@ MONEY </span>
         font-size: 1em;
         border: 1px solid #ddd;
         border-radius: 4px;
+    }
+
+    .dropdown-small {
+        padding: 8px;
+        font-size: 0.9em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: auto; /* Adjusts dropdown width to a smaller size */
     }
 
     .contact-form textarea {
@@ -799,7 +808,7 @@ MONEY </span>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch country code and currency based on IP
-    fetch('https://ipinfo.io?token=YOUR_API_TOKEN')
+    fetch('https://ipinfo.io?token=a5e80cee2e8b98')
         .then(response => response.json())
         .then(data => {
             const countryCode = data.country;
@@ -828,7 +837,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "GB": "44",
             // Add other countries as needed
         };
-        return dialCodes[code] || '';
+        return dialCodes[code] || '1';
     }
 
     // Form submission handling
@@ -865,7 +874,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }).catch(error => console.error('Form submission error:', error));
     });
 });
-</script>    
+</script>	
 </div>
 </div>
 </div>
