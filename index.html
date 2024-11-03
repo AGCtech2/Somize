@@ -687,8 +687,8 @@ MONEY </span>
 <div class="elementor-widget-container">
 <!-- Form Section Starts -->
 <div class="form-section">
-    <h2></h2>
-    <p class="form-subtext">We're here to answer any question you may have.</p>
+           <h2></h2>
+	    <p class="form-subtext">We're here to answer any question you may have.</p>
 
     <!-- Contact Form -->
     <form id="contactForm" action="https://formspree.io/f/xbljgzpb" method="POST" class="contact-form">
@@ -768,7 +768,6 @@ MONEY </span>
     }
 
     .form-group-inline {
-        display: flex;
         justify-content: space-between;
     }
 
@@ -794,8 +793,8 @@ MONEY </span>
         font-size: 1em;
         border: 1px solid #ddd;
         border-radius: 4px;
-        width: 30%;
-        min-width: 80px;
+        width: auto; /* Allow the dropdown to resize to its content */
+        min-width: 100px; /* Ensure it has a minimum width */
         background-color: #f9f9f9;
     }
 
