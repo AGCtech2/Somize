@@ -686,26 +686,43 @@ MONEY </span>
 <div class="elementor-element elementor-element-49e17041 elementor-widget elementor-widget-shortcode" data-id="49e17041" data-element_type="widget" data-widget_type="shortcode.default">
 <div class="elementor-widget-container">
 <!-- Form Section Starts -->
-<div class="form-section" id="contact-form">
-   <h2></h2>
+<div class="form-section">
+    <h2>READY TO GROW YOUR BUSINESS?</h2>
     <p class="form-subtext">We're here to answer any question you may have.</p>
 
     <!-- Contact Form -->
-    <form id="contactForm" action="https://formspree.io/f/xbljgzpb" method="POST" class="contact-form">
+    <form id="contactForm" action="YOUR_FORMSPREE_OR_GETFORM_ACTION_URL" method="POST" class="contact-form">
         <div class="form-group">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
         </div>
+        
+        <!-- Phone and Country Code -->
         <div class="form-group">
-            <input type="text" name="phone" placeholder="Your Phone Number">
-            <input type="text" name="budget" placeholder="What's your budget?">
+            <select id="country-code" name="country_code" required>
+                <!-- Placeholder and options to be filled dynamically -->
+                <option value="">Select Country Code</option>
+            </select>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
         </div>
+
+        <!-- Budget and Currency -->
+        <div class="form-group">
+            <input type="text" name="budget" placeholder="Your Budget" required>
+            <select id="currency" name="currency" required>
+                <!-- Placeholder and options to be filled dynamically -->
+                <option value="">Select Currency</option>
+            </select>
+        </div>
+
         <div class="form-group">
             <input type="text" name="website" placeholder="Your Website">
         </div>
+        
         <div class="form-group">
             <textarea name="message" placeholder="Tell us about your project"></textarea>
         </div>
+        
         <button type="submit">SEND MESSAGE</button>
     </form>
 
@@ -725,8 +742,8 @@ MONEY </span>
     }
 
     .form-subtext {
-        font-size: 1em; /* Adjust to match your site's font size */
-        color: #6c6c6c; /* Use a subtle gray color */
+        font-size: 1em;
+        color: #6c6c6c;
         margin-top: -10px;
         margin-bottom: 20px;
     }
@@ -745,6 +762,7 @@ MONEY </span>
     }
 
     .form-group input,
+    .form-group select,
     .form-group textarea {
         width: 100%;
         padding: 12px;
@@ -758,7 +776,7 @@ MONEY </span>
     }
 
     .contact-form button {
-        background-color: #7b47d1; /* Match your site's button color */
+        background-color: #7b47d1;
         color: #fff;
         padding: 10px 20px;
         border: none;
@@ -773,26 +791,76 @@ MONEY </span>
     }
 </style>
 
-<!-- JavaScript to Handle Form Submission and Confirmation Message -->
+<!-- JavaScript to Handle Geolocation, Form Submission, and Confirmation Message -->
 <script>
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form from reloading the page
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch country code and currency based on IP
+    fetch('https://ipinfo.io?token=YOUR_API_TOKEN')
+        .then(response => response.json())
+        .then(data => {
+            const countryCode = data.country;
+            const currency = getCurrencyByCountryCode(countryCode);
 
-    // Display confirmation message and hide form
-    document.getElementById('confirmationMessage').style.display = 'block';
-    this.style.display = 'none'; // Hide form after submission
+            // Set country code and currency in the dropdowns if detected
+            document.getElementById('country-code').value = countryCode;
+            document.getElementById('currency').value = currency;
+        })
+        .catch(error => console.error('Geolocation error:', error));
 
-    // To actually submit the form to Formspree or Getform
-    fetch(this.action, {
-        method: this.method,
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-    }).then(response => {
-        if (response.ok) {
-            this.reset(); // Clear the form if needed
-        }
-    }).catch(error => {
-        console.error('Form submission error:', error);
+    // Map of country codes to currencies (can expand as needed)
+    function getCurrencyByCountryCode(code) {
+        const currencyMapping = {
+            "US": "USD",
+            "IN": "INR",
+            "EU": "EUR",
+            // Add other countries as needed
+        };
+        return currencyMapping[code] || 'USD'; // Default to USD if not found
+    }
+
+    // Populate country code and currency dropdowns
+    const countryCodes = {
+        "US": "+1",
+        "IN": "+91",
+        "GB": "+44",
+        "AU": "+61",
+        // Add other countries as needed
+    };
+    const currencies = ["USD", "EUR", "INR"];
+
+    const countryCodeSelect = document.getElementById('country-code');
+    const currencySelect = document.getElementById('currency');
+
+    for (const [code, dialCode] of Object.entries(countryCodes)) {
+        let option = document.createElement("option");
+        option.value = dialCode;
+        option.textContent = `${code} (${dialCode})`;
+        countryCodeSelect.appendChild(option);
+    }
+
+    currencies.forEach(currency => {
+        let option = document.createElement("option");
+        option.value = currency;
+        option.textContent = currency;
+        currencySelect.appendChild(option);
+    });
+    
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page reload
+        
+        // Show confirmation message and hide form
+        document.getElementById('confirmationMessage').style.display = 'block';
+        this.style.display = 'none';
+
+        // Submit form data to Formspree or Getform
+        fetch(this.action, {
+            method: this.method,
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) this.reset(); // Clear form if needed
+        }).catch(error => console.error('Form submission error:', error));
     });
 });
 </script>
