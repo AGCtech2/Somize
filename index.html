@@ -685,9 +685,9 @@ MONEY </span>
 </div>
 <div class="elementor-element elementor-element-49e17041 elementor-widget elementor-widget-shortcode" data-id="49e17041" data-element_type="widget" data-widget_type="shortcode.default">
 <div class="elementor-widget-container">
-  <!-- Form Section Starts -->
+<!-- Form Section Starts -->
 <div class="form-section">
-    <h2>READY TO GROW YOUR BUSINESS?</h2>
+    <h2></h2>
     <p class="form-subtext">We're here to answer any question you may have.</p>
 
     <!-- Contact Form -->
@@ -697,9 +697,9 @@ MONEY </span>
             <input type="email" name="email" placeholder="Your Email Address" required>
         </div>
         
-        <!-- Phone Number with Country Code -->
-        <div class="form-group">
-            <div class="form-inline-group">
+        <!-- Phone Number and Budget in the Same Line -->
+        <div class="form-group-inline">
+            <div class="inline-item">
                 <select id="countryCode" name="countryCode" class="dropdown-small">
                     <option value="+1">+1 (US)</option>
                     <option value="+91">+91 (IN)</option>
@@ -708,11 +708,8 @@ MONEY </span>
                 </select>
                 <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
             </div>
-        </div>
-
-        <!-- Budget with Currency -->
-        <div class="form-group">
-            <div class="form-inline-group">
+            
+            <div class="inline-item">
                 <select id="currency" name="currency" class="dropdown-small">
                     <option value="USD">USD</option>
                     <option value="INR">INR</option>
@@ -762,26 +759,34 @@ MONEY </span>
         align-items: center;
     }
 
-    .form-group {
+    .form-group,
+    .form-group-inline {
         display: flex;
         width: 100%;
         gap: 10px;
         margin-bottom: 15px;
     }
 
+    .form-group-inline {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .inline-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 48%;
+    }
+
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .inline-item input {
         width: 100%;
         padding: 12px;
         font-size: 1em;
         border: 1px solid #ddd;
         border-radius: 4px;
-    }
-
-    .form-inline-group {
-        display: flex;
-        width: 100%;
-        gap: 10px;
     }
 
     .dropdown-small {
@@ -789,14 +794,9 @@ MONEY </span>
         font-size: 1em;
         border: 1px solid #ddd;
         border-radius: 4px;
-        width: 25%;
+        width: 30%;
         min-width: 80px;
         background-color: #f9f9f9;
-    }
-
-    .form-inline-group input[type="tel"],
-    .form-inline-group input[type="text"] {
-        flex: 1;
     }
 
     .contact-form textarea {
@@ -818,7 +818,6 @@ MONEY </span>
         background-color: #6a3bb5;
     }
 </style>
-
 <!-- JavaScript for Geolocation and Form Submission -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
